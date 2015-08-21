@@ -1,0 +1,33 @@
+<h1><%= @client.name() %></h1>
+
+<h3>Select all the stylists who work with this client:</h3>
+
+<% if @stylists.any?() %>
+<form action="/clients/<%= @client.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <% @stylists.each() do |stylist| %>
+  <div class = "checkbox">
+    <label>
+      <input type="checkbox" name="stylist_id[]" value="<%= stylist.id() %>"><%= stylist.name() %>
+    </label>
+  </div>
+  <% end %>
+
+  <button type="submit">Add stylist</button>
+</form>
+<% end %>
+
+<% if @client.stylists().any?() %>
+
+<h3>Here are all the stylists who work with this client:</h3>
+
+<ul>
+  <% @client.stylists().each() do |stylist| %>
+  <li><%= stylist.name() %></li>
+  <% end %>
+</ul>
+<% else %>
+<p>This client doesn't have any stylists yet!<a href="/stylists">Add a stylist here</a></p>
+<% end %>
+
+<a href="/">Home</a>

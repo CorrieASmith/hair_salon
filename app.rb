@@ -172,3 +172,21 @@ delete("/stylists/:id") do
   @stylists = Stylists.all()
   redirect('/stylists')
 end
+
+patch("/clients/:id") do
+  client_id = params.fetch("id").to_i()
+  @client = Clients.find(client_id)
+  stylist_id = params.fetch("stylist_id")
+  @client.update({:stylist_id => stylist_id})
+  @stylists = Stylists.all()
+  erb(:client_info)
+end
+
+patch("/stylists/:id") do
+  stylist_id = params.fetch("id").to_i()
+  @stylist = Stylists.find(stylist_id)
+  client_id = params.fetch("client_id")
+  @stylist.update({:client_id => client_id})
+  @clients = Clients.all()
+  erb(:stylist_info)
+end
