@@ -20,4 +20,8 @@ class Stylists
     end
     stylists
   end
+
+  define_method(:==) do |other|
+    self.id().eql?(other.id())
+  end
 end
