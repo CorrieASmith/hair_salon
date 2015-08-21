@@ -24,4 +24,9 @@ class Stylists
   define_method(:==) do |other|
     self.id().eql?(other.id())
   end
+
+  define_method(:save) do
+    result = DB.exec("INSERT INTO stylists (name, salon, phone) VALUES ('#{@name}', '#{@salon}', #{@phone}) RETURNING id;")
+    @id = result.first().fetch('id').to_i()
+  end
 end
