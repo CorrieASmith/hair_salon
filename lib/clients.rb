@@ -43,17 +43,35 @@ class Clients
   end
 
   define_method(:update) do |attributes|
-    @name = attributes.fetch(:name)
-    @email = attributes.fetch(:email)
-    @phone = attributes.fetch(:phone)
-    @city = attributes.fetch(:city)
-    @zip = attributes.fetch(:zip)
+    @name = attributes.fetch(:name, @name)
+    @email = attributes.fetch(:email, @email)
+    @phone = attributes.fetch(:phone, @phone)
+    @city = attributes.fetch(:city, @city)
+    @zip = attributes.fetch(:zip, @zip)
     @id = self.id()
     DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id}")
     DB.exec("UPDATE clients SET email = '#{@email}' WHERE id = #{@id}")
     DB.exec("UPDATE clients SET phone = #{@phone} WHERE id = #{@id}")
     DB.exec("UPDATE clients SET city = '#{@city}' WHERE id = #{@id}")
     DB.exec("UPDATE clients SET zip = #{@zip} WHERE id = #{@id}")
+
+    attributes.fetch(:stylist_id, []).each() do |stylist_id|
+      DB.exec("INSERT INTO clients_stylists (stylist_id, client_id) VALUES (#{stylist_id}, #{self.id()});")
+    end
+  end
+
+  define_method(:stylists) do
+    clients_stylists = []
+    results = DB.exec("SELECT stylist_id FROM clients_stylists WHERE client_id = #{self.id()};")
+    results.each() do |result|
+      stylist_id = result.fetch("stylist_id").to_i()
+      stylist = DB.exec("SELECT * FROM stylists WHERE id = #{stylist_id};")
+      name = stylist.first().fetch("name")
+      salon = stylist.first().fetch("salon")
+      phone = stylist.first().fetch("salon")
+      clients_stylists.push(Stylists.new({:name => name, :salon => salon, :phone => phone, :id => stylist_id}))
+    end
+    clients_stylists
   end
 
   define_method(:delete) do

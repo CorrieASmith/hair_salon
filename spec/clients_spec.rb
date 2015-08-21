@@ -35,6 +35,30 @@ describe(Clients) do
       client.update({:name => "Shane", :email => "shanesnewemail@gmail.com", :phone => 444-4444, :city => "Los Angeles", :zip => 980001, :id => nil})
       expect(client.email()).to(eq("shanesnewemail@gmail.com"))
     end
+
+    it("lets you add a stylist to a client") do
+      client = Clients.new({:name => "Shane", :email => "shanedawson@gmail.com", :phone => 999-9999, :city => "Los Angeles", :zip => 980001, :id => nil})
+      client.save()
+      ursula = Stylists.new({:name => "Ursula", :salon => "A Tease to Dye For", :phone => 123-4567, :id => nil})
+      ursula.save()
+      kevin = Stylists.new({:name => "Kevin", :salon => "Shangri-Locks", :phone => 123-4567, :id => nil})
+      kevin.save()
+      client.update({:stylist_id => [ursula.id(), kevin.id()]})
+      expect(client.stylists()).to(eq([ursula, kevin]))
+    end
+  end
+
+  describe("#stylists") do
+    it("returns all of the stylists of a particular client") do
+      client = Clients.new({:name => "Shane", :email => "shanedawson@gmail.com", :phone => 999-9999, :city => "Los Angeles", :zip => 980001, :id => nil})
+      client.save()
+      ursula = Stylists.new({:name => "Ursula", :salon => "A Tease to Dye For", :phone => 123-4567, :id => nil})
+      ursula.save()
+      kevin = Stylists.new({:name => "Kevin", :salon => "Shangri-Locks", :phone => 123-4567, :id => nil})
+      kevin.save()
+      client.update({:stylist_id => [ursula.id(), kevin.id()]})
+      expect(client.stylists()).to(eq([ursula, kevin]))
+    end
   end
 
   describe('#delete') do
