@@ -25,4 +25,18 @@
   </form>
 </div>
 
+<% if @stylists.any?() %>
+  <p>Click on a stylist to see their information or add them to a client:</p>
+
+  <ul>
+    <% @stylists.each do |stylist| %>
+      <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no stylists added yet!</p>
+<% end %>
+
+<p><a href="/clients">See all clients</a></p>
+
 <a href="/">Home</a>

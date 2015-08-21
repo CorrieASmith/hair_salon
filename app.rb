@@ -45,8 +45,8 @@ end
 
 get('/clients/:id') do
   @client = Clients.find(params.fetch("id").to_i())
-  @clients = Clients.all()
-  erb(:clients)
+  @stylists = Stylists.all()
+  erb(:client_info)
 end
 
 get('/clients_edit/:id') do
@@ -125,8 +125,8 @@ end
 
 get('/stylists/:id') do
   @stylist = Stylists.find(params.fetch("id").to_i())
-  @stylists = Stylists.all()
-  erb(:stylists)
+  @clients = Clients.all()
+  erb(:stylist_info)
 end
 
 get('/stylists_edit/:id') do
@@ -173,6 +173,15 @@ delete("/stylists/:id") do
   redirect('/stylists')
 end
 
+post("/clients/:id") do
+  client_id = params.fetch("id").to_i()
+  @client = Clients.find(client_id)
+  stylist_id = params.fetch("stylist_id")
+  @client.update({:stylist_id => stylist_id})
+  @stylists = Stylists.all()
+  erb(:client_info)
+end
+
 patch("/clients/:id") do
   client_id = params.fetch("id").to_i()
   @client = Clients.find(client_id)
@@ -180,6 +189,15 @@ patch("/clients/:id") do
   @client.update({:stylist_id => stylist_id})
   @stylists = Stylists.all()
   erb(:client_info)
+end
+
+post("/stylists/:id") do
+  stylist_id = params.fetch("id").to_i()
+  @stylist = Stylists.find(stylist_id)
+  client_id = params.fetch("client_id")
+  @stylist.update({:client_id => client_id})
+  @clients = Clients.all()
+  erb(:stylist_info)
 end
 
 patch("/stylists/:id") do

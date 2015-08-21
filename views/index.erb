@@ -1,13 +1,35 @@
-<h1>Hair Salon Hub</h1>
+<h1>Welcome to Hair Salon!</h1>
+<h2>This website stores information about clients and stylists.</h2>
 
-<div class="h3_container">
-<h3>See our list of clients:</h3>
-<ul>
-  <li><a href="/clients">Click here!</a></li>
-</ul>
+<p><a href="/clients">Add a new client</a></p>
+<p><a href="/stylists">Add a new stylist</a></p>
 
-<h3>See our list of stylists:</h3>
-<ul>
-  <li><a href="/stylists">Click here!</a></li>
-</ul>
-</div>
+
+<h3>Here are all the clients in this database:</h3>
+
+<% if @clients.any?() %>
+  <p>Click on a client to see information about them and mark which stylists they have visited:</p>
+
+  <ul>
+    <% @clients.each do |client| %>
+      <li><a href="/clients/<%= client.id() %>"><%= client.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no clients added yet!</p>
+<% end %>
+
+
+<h3>Here are all the stylists in this database:</h3>
+
+<% if @stylists.any?() %>
+  <p>Click on a stylist to see information about it and mark which clients they have worked with:</p>
+
+  <ul>
+    <% @stylists.each do |stylist| %>
+      <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no stylists added yet!</p>
+<% end %>
