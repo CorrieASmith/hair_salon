@@ -42,4 +42,13 @@ describe(Stylists) do
       expect(stylist.salon()).to(eq("Absolutely UnbeWEAVEable"))
     end
   end
+
+  describe('#delete') do
+    it("allows the salon owner to delete a stylist from the database") do
+      stylist = Stylists.new({:name => "Cheryl", :salon => "Shangri-Locks", :phone => 432-1234, :id => nil})
+      stylist.save()
+      stylist.delete()
+      expect(Stylists.all()).to(eq([]))
+    end
+  end
 end
