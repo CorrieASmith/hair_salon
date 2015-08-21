@@ -1,0 +1,62 @@
+<h2>Update <%= @client.name %>'s information:</h2>
+
+<form action="/clients/<%= @client_id %>/name" method="post">
+
+  <input name="_method" type="hidden" value="patch">
+  <input id="id" name="id" type="hidden" value="<%= @client_id %>">
+
+  <label for="name">Add a new name for this client:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Update Client</button>
+</form>
+
+<form action="/clients/<%= @client_id %>/email" method="post">
+
+  <input name="_method" type="hidden" value="patch">
+  <input id="id" name="id" type="hidden" value="<%= @client_id %>">
+
+  <label for="email">Add a new email for this client:</label>
+  <input id="email" name="email" type="text">
+
+  <button type="submit">Update Client</button>
+</form>
+
+<form action="/clients/<%= @client_id %>/phone" method="post">
+
+  <input name="_method" type="hidden" value="patch">
+  <input id="id" name="id" type="hidden" value="<%= @client_id %>">
+
+  <label for="phone">Add a new phone number for this client:</label>
+  <input id="phone" name="phone" type="text">
+
+  <button type="submit">Update Client</button>
+</form>
+
+<form action="/clients/<%= @client_id %>/city" method="post">
+
+  <input name="_method" type="hidden" value="patch">
+  <input id="id" name="id" type="hidden" value="<%= @client_id %>">
+
+  <label for="city">Add a new city for this client:</label>
+  <input id="city" name="city" type="text">
+
+  <button type="submit">Update Client</button>
+</form>
+
+<form action="/clients/<%= @client_id %>/zip" method="post">
+
+  <input name="_method" type="hidden" value="patch">
+  <input id="id" name="id" type="hidden" value="<%= @client_id %>">
+
+  <label for="zip">Add a zip code for this client:</label>
+  <input id="zip" name="zip" type="text">
+
+  <button type="submit">Update Client</button>
+</form>
+
+<form action="/clients/<%= @client_id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete Client</button>
+</form>

@@ -1,0 +1,28 @@
+<h2>Salon Stylists</h2>
+<hr>
+<ul>
+  <% @stylists.each() do |stylist| %>
+  <li><a href="/stylists_edit/<%=stylist.id %>"><%= stylist.name %> is a stylist at <%= stylist.salon %>. You can reach this hair wizard at <%= stylist.phone %>!</a></li>
+  <% end %>
+</ul>
+
+<h3>Add a New Stylist</h3>
+
+<div class="hair_salon_form">
+
+  <form action="/stylists/new" method="post">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="e.g. Ursula"></br>
+
+    <label for="salon">Salon:</label>
+    <input type="text" id="name" name="salon" placeholder="e.g. UnbeWEAVEable"></br>
+
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" placeholder="e.g. 2062409828"></br>
+
+    <button type="submit">Add Stylist</button>
+  </form>
+</div>
+
+<a href="/">Home</a>

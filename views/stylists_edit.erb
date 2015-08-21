@@ -1,0 +1,40 @@
+<h2>Update <%= @stylist.name %>'s information:</h2>
+
+<form action="/stylists/<%= @stylist_id %>/name" method="post">
+
+  <input name="_method" type="hidden" value='patch'>
+  <input id="id" name="id" type="hidden" value="<%= @stylist_id %>">
+
+  <label for="name">Add a new name for this stylist:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Update Stylist</button>
+</form>
+
+<form action="/stylists/<%= @stylist_id %>/salon" method="post">
+
+  <input name="_method" type="hidden" value='patch'>
+  <input id="id" name="id" type="hidden" value="<%= @stylist_id %>">
+
+  <label for="salon">Add a new salon for this stylist:</label>
+  <input id="salon" name="salon" type="text">
+
+  <button type="submit">Update Stylist</button>
+</form>
+
+<form action="/stylists/<%= @stylist_id %>/phone" method="post">
+
+  <input name="_method" type="hidden" value='patch'>
+  <input id="id" name="id" type="hidden" value="<%= @stylist_id %>">
+
+  <label for="phone">Add a new phone number for this stylist:</label>
+  <input id="phone" name="phone" type="text">
+
+  <button type="submit">Update Stylist</button>
+</form>
+
+<form action="/stylists/<%= @stylist_id %>" method="post">
+  <inpit name="_method" type="hidden" value="delete">
+
+    <button type="submit">Delete Stylist</button>
+  </form>

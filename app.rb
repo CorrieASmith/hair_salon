@@ -40,3 +40,133 @@ post('/stylists/new') do
   stylist.save()
   redirect('/stylists')
 end
+
+get('/clients/:id') do
+  @client = Clients.find(params.fetch("id").to_i())
+  @clients = Clients.all()
+  erb(:clients)
+end
+
+get('/clients_edit/:id') do
+  @client = Clients.find(params.fetch("id").to_i())
+  @client_name = @client.name()
+  @client_id = @client.id()
+  erb(:clients_edit)
+end
+
+patch('/clients/:id/name') do
+  name = params.fetch('name')
+  @client = Clients.find(params.fetch("id").to_i())
+  email = @client.email()
+  phone = @client.phone()
+  city = @client.city()
+  zip = @client.zip()
+  @client.update({:name => name, :email => email, :phone => phone, :city => city, :zip => zip})
+  @client = Clients.all()
+  redirect('/clients')
+end
+
+patch('/clients/:id/email') do
+  email = params.fetch('email')
+  @client = Clients.find(params.fetch("id").to_i())
+  name = @client.name()
+  phone = @client.phone()
+  city = @client.city()
+  zip = @client.zip()
+  @client.update({:name => name, :email => email, :phone => phone, :city => city, :zip => zip})
+  @client = Clients.all()
+  redirect('/clients')
+end
+
+patch('/clients/:id/phone') do
+  phone = params.fetch('phone')
+  @client = Clients.find(params.fetch("id").to_i())
+  name = @client.name()
+  email = @client.email()
+  city = @client.city()
+  zip = @client.zip()
+  @client.update({:name => name, :email => email, :phone => phone, :city => city, :zip => zip})
+  @client = Clients.all()
+  redirect('/clients')
+end
+
+patch('/clients/:id/city') do
+  city = params.fetch('city')
+  @client = Clients.find(params.fetch("id").to_i())
+  name = @client.name()
+  email = @client.email()
+  phone = @client.phone()
+  zip = @client.zip()
+  @client.update({:name => name, :email => email, :phone => phone, :city => city, :zip => zip})
+  @client = Clients.all()
+  redirect('/clients')
+end
+
+patch('/clients/:id/zip') do
+  zip = params.fetch('zip')
+  @client = Clients.find(params.fetch("id").to_i())
+  name = @client.name()
+  email = @client.email()
+  phone = @client.phone()
+  city = @client.city()
+  @client.update({:name => name, :email => email, :phone => phone, :city => city, :zip => zip})
+  @client = Clients.all()
+  redirect('/clients')
+end
+
+delete("/clients/:id") do
+  @client = Clients.find(params.fetch("id").to_i())
+  @client.delete()
+  @clients = Clients.all()
+  redirect('/clients')
+end
+
+get('/stylists/:id') do
+  @stylist = Stylists.find(params.fetch("id").to_i())
+  @stylists = Stylists.all()
+  erb(:stylists)
+end
+
+get('/stylists_edit/:id') do
+  @stylist = Stylists.find(params.fetch("id").to_i())
+  @stylist_name = @stylist.name()
+  @stylist_id = @stylist.id()
+  erb(:stylists_edit)
+end
+
+patch('/stylists/:id/name') do
+  name = params.fetch('name')
+  @stylist = Stylists.find(params.fetch("id").to_i())
+  salon = @stylist.salon()
+  phone = @stylist.phone()
+  @stylist.update({:name => name, :salon => salon, :phone => phone})
+  @stylists = Stylists.all()
+  redirect('/stylists')
+end
+
+patch('/stylists/:id/salon') do
+  salon = params.fetch('salon')
+  @stylist = Stylists.find(params.fetch("id").to_i())
+  name = @stylist.name()
+  phone = @stylist.phone()
+  @stylist.update({:name => name, :salon => salon, :phone => phone})
+  @stylists = Stylists.all()
+  redirect('/stylists')
+end
+
+patch('/stylists/:id/phone') do
+  phone = params.fetch('phone')
+  @stylist = Stylists.find(params.fetch("id").to_i())
+  name = @stylist.name()
+  salon = @stylist.salon()
+  @stylist.update({:name => name, :salon => salon, :phone => phone})
+  @stylists = Stylists.all()
+  redirect('/stylists')
+end
+
+delete("/stylists/:id") do
+  @stylist = Stylists.find(params.fetch("id").to_i())
+  @stylist.delete()
+  @stylists = Stylists.all()
+  redirect('/stylists')
+end
