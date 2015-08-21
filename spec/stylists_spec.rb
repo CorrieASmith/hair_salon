@@ -34,4 +34,12 @@ describe(Stylists) do
     end
   end
 
+  describe('#update') do
+    it("allows the salon owner to update stylist information") do
+      stylist = Stylists.new({:name => "Kenny", :salon => "Cut the Crap Salon", :phone => 333-9999, :id => nil})
+      stylist.save()
+      stylist.update({:name => "Kenny", :salon => "Absolutely UnbeWEAVEable", :phone => 333-9999, :id => nil})
+      expect(stylist.salon()).to(eq("Absolutely UnbeWEAVEable"))
+    end
+  end
 end
