@@ -24,4 +24,9 @@ class Clients
     end
     clients
   end
+
+  define_method(:==) do |other|
+    self.id().eql?(other.id())
+  end
+
 end
