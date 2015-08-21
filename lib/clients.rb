@@ -34,4 +34,11 @@ class Clients
     @id = result.first().fetch('id').to_i()
   end
 
+  define_singleton_method(:find) do |id|
+    Clients.all().each() do |client|
+      if client.id() == id
+        return client
+      end
+    end
+  end
 end
