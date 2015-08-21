@@ -42,4 +42,14 @@ describe(Clients) do
       expect(client.email()).to(eq("shanesnewemail@gmail.com"))
     end
   end
+
+  describe('#delete') do
+    it("allows the salon owner to delete a client from the database") do
+      client = Clients.new({:name => "Bethany", :email => "bethanymota@gmail.com", :phone => 111-1111, :city => "Los Angeles", :zip => 980001, :id => nil})
+      client.save()
+      client.delete()
+      expect(Clients.all()).to(eq([]))
+    end
+  end
+
 end
