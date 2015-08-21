@@ -29,4 +29,9 @@ class Clients
     self.id().eql?(other.id())
   end
 
+  define_method(:save) do
+    result = DB.exec("INSERT INTO clients (name, email, phone, city, zip) VALUES ('#{@name}', '#{@email}', #{@phone}, '#{@city}', #{@zip}) RETURNING id;")
+    @id = result.first().fetch('id').to_i()
+  end
+
 end
