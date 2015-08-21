@@ -8,8 +8,11 @@ All of the back end code is passing, and the application runs on the Sinatra ser
 The PSQL database details for this application are as follows:
 
 CREATE DATABASE hair_salon;
+
 CREATE TABLE clients (id serial PRIMARY KEY, name varchar, email varchar, phone int, city varchar, zip int);
+
 CREATE TABLE stylists (id serial PRIMARY KEY, name varchar, salon varchar, phone int);
+
 CREATE TABLE clients_stylists (id serial PRIMARY KEY, client_id int, stylist_id int);
 
 
