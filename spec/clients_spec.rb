@@ -34,4 +34,12 @@ describe(Clients) do
     end
   end
 
+  describe('#update') do
+    it("allows the salon owner to update client information") do
+      client = Clients.new({:name => "Shane", :email => "shanedawson@gmail.com", :phone => 999-9999, :city => "Los Angeles", :zip => 980001, :id => nil})
+      client.save()
+      client.update({:name => "Shane", :email => "shanesnewemail@gmail.com", :phone => 444-4444, :city => "Los Angeles", :zip => 980001, :id => nil})
+      expect(client.email()).to(eq("shanesnewemail@gmail.com"))
+    end
+  end
 end

@@ -41,4 +41,19 @@ class Clients
       end
     end
   end
+
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name)
+    @email = attributes.fetch(:email)
+    @phone = attributes.fetch(:phone)
+    @city = attributes.fetch(:city)
+    @zip = attributes.fetch(:zip)
+    @id = self.id()
+    DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id}")
+    DB.exec("UPDATE clients SET email = '#{@email}' WHERE id = #{@id}")
+    DB.exec("UPDATE clients SET phone = #{@phone} WHERE id = #{@id}")
+    DB.exec("UPDATE clients SET city = '#{@city}' WHERE id = #{@id}")
+    DB.exec("UPDATE clients SET zip = #{@zip} WHERE id = #{@id}")
+
+  end
 end
