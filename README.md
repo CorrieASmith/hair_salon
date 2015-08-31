@@ -1,6 +1,6 @@
 # _Hair Salon - Code Review_
 
-##### _An app that stores information for hair salon employees and their clients, 08/21/2015 _
+##### An app that stores information for hair salon employees and their clients, 08/21/2015 
 
 #### By _**Corrie Smith**_
 
